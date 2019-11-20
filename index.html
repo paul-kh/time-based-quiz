@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- nav bar-------------------------------------------------------------------- -->
+    <nav class="container-fluid bg-dark">
+        <div class="row d-flex">
+            <div class="col-6 text-left flex-fill">
+                <h3 class="navbar-brand" style="color: white">Quiz</h3>
+            </div>
+            <div class="col-6 text-right pr-0">
+                <h4 id="time" class="navbar-brand" style="color: yellow"></h4>
+            </div>
+        </div>
+
+    </nav>
+
+    <!--  default page -------------------------------------------------------------------------- -->
+    <div id="quiz-intro" class="container bg-light mt-5">
+        <div class="row">
+
+            <!-- quiz introduction -->
+            <div class="col">
+                <h4>
+                    Quiz description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel minima nobis quia
+                    commodi itaque quas earum aspernatur ipsum, ad placeat, mollitia eveniet, fugiat quisquam laborum
+                    cum repudiandae nam possimus suscipit?
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-2">
+                <button id="start-quiz-btn" class="btn btn-primary"> Start Quiz</button>
+            </div>
+        </div>
+    </div> <!-- --------------------------------------------------------------------------------------->
+    <!-- Show user form-->
+    <div id="user-form" class="d-none">
+        <div class="row">
+
+
+            <div class="col text-center">
+                <h4 id="user-score">
+                    
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-2">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary initial-js" type="button" id="button-addon2">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- --------------------------------------------------------------------------------------->
+
+    <!-- Show High Score-->
+    <div id="high-score" class="d-none">
+        <div class="row">
+
+
+            <div class="col text-center">
+                <h4>
+                    Highest score is: xxx
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-2">
+                <button class="btn btn-primary go-back-js" type="button" id="button-addon2">Go Back</button>
+                <button class="btn btn-primary clearScore-js" type="button" id="button-addon2">Clear Highscores</button>
+            </div>
+        </div>
+    </div> <!-- --------------------------------------------------------------------------------------->
+
+
+    <script src="assets/scripts/questions.js"></script>
+    <script src="assets/scripts/script.js"></script>
+</body>
+
+</html>
