@@ -212,6 +212,10 @@ function showUserForm() {
         document.getElementById("highscoresH4").innerHTML = "The highest score is <span style='color:red; font-weight:bold'> " + highestScore  + "</span>, done by <span style='color:red; font-weight:bold'>" + champion + "</span>";
         
     });
+    // Go back to star quiz again
+    document.getElementById("go-back").addEventListener("click", function () {
+        document.getElementById("high-score").setAttribute("class", "d-none");
+        location.reload();
 
     // Clear Highscore
     document.getElementById("clear-hgithscore").addEventListener("click", function(){
@@ -222,19 +226,13 @@ function showUserForm() {
 
 
 }
-function highscores() {
-    document.querySelector(".initial-js").addEventListener("click", function () {
-        document.getElementById("user-form").setAttribute("class", "d-none");
-        document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
-    });
+/////// removed this function since it's not necessary
+// function highscores() {
+//     document.querySelector(".initial-js").addEventListener("click", function () {
+//         document.getElementById("user-form").setAttribute("class", "d-none");
+//         document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
+//     });
 
-    document.getElementById("go-back").addEventListener("click", function () {
-        document.getElementById("high-score").setAttribute("class", "d-none");
-        location.reload();
-
-
-
-    });
 }
 function startTimer(time) {
     myInterval = setInterval(function () {
