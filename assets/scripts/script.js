@@ -7,22 +7,17 @@
             > Row 3 > col 1 > p                     : for showing result (correct or incorrect!)          
 - Load data from the array Questions 
 - Add Event listener to each answer choice button  !!!!! CHALLENGE: How to pause forEach loop for user to click a button?
-
 > Verify user's answer
 - compare user's answer to the value of answer key in the array questions
 - Display result at the result bar for user to see
 - Record result in an array
 - if wrong answer > 0 then score = time remaining / #wrong answer
 - if wrong answer = 0, then score = time remaining
-
 > Set timer
 - Start timer once the Start Quiz button is clicked
-
 > Record user's score
 - Render user's info: initial, score, button to save to local storeage
 - 
-
-
 */
 
 const startQuizBtnEl = document.getElementById("start-quiz-btn");
@@ -212,10 +207,6 @@ function showUserForm() {
         document.getElementById("highscoresH4").innerHTML = "The highest score is <span style='color:red; font-weight:bold'> " + highestScore  + "</span>, done by <span style='color:red; font-weight:bold'>" + champion + "</span>";
         
     });
-    // Go back to star quiz again
-    document.getElementById("go-back").addEventListener("click", function () {
-        document.getElementById("high-score").setAttribute("class", "d-none");
-        location.reload();
 
     // Clear Highscore
     document.getElementById("clear-hgithscore").addEventListener("click", function(){
@@ -226,13 +217,19 @@ function showUserForm() {
 
 
 }
-/////// removed this function since it's not necessary
-// function highscores() {
-//     document.querySelector(".initial-js").addEventListener("click", function () {
-//         document.getElementById("user-form").setAttribute("class", "d-none");
-//         document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
-//     });
+function highscores() {
+    document.querySelector(".initial-js").addEventListener("click", function () {
+        document.getElementById("user-form").setAttribute("class", "d-none");
+        document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
+    });
 
+    document.getElementById("go-back").addEventListener("click", function () {
+        document.getElementById("high-score").setAttribute("class", "d-none");
+        location.reload();
+
+
+
+    });
 }
 function startTimer(time) {
     myInterval = setInterval(function () {
@@ -270,6 +267,3 @@ function startQuiz() {
 
 
 startQuiz();
-
-
-
