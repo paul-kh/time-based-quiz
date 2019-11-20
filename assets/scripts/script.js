@@ -29,9 +29,9 @@ const startQuizBtnEl = document.getElementById("start-quiz-btn");
 const containerEl = document.createElement("div");
 let remainingTime = 75;
 let userScores = [0];
+let allUserScores = [];
 let myInterval = null;
-
-
+let userData = [{ initial: "dummy", score: 0 }];
 
 document.body.append(containerEl);
 containerEl.setAttribute("class", "d-none");
@@ -107,9 +107,9 @@ function renderQuizzes() { // render quiz --------------------------------------
     console.log("Answer should be :", questions[questionNum].answer);
 
     //add click event to each answer choice button to show next question
-    for (let i = 0; i < 4; i++) {        
+    for (let i = 0; i < 4; i++) {
         btnAnswerChoices[i].addEventListener("click", function () {
-            if (remainingTime <= 0){alert("timeup")};
+            if (remainingTime <= 0) { alert("timeup") };
             userChoice = btnAnswerChoices[i].innerText.substring(3, btnAnswerChoices[i].innerText.length);
             console.log("User chose :", userChoice);
 
@@ -121,8 +121,8 @@ function renderQuizzes() { // render quiz --------------------------------------
                 console.log("User scores: ", userScores);
                 statusResultHtml.innerHTML = "Correct!";
                 // Bonus: add audio when user answered correctly  
-            } else { 
-                statusResultHtml.innerHTML = "Wrong!"; 
+            } else {
+                statusResultHtml.innerHTML = "Wrong!";
                 // deduct 15 seconds from remaining time
                 remainingTime = remainingTime - 15;
                 clearInterval(myInterval);
@@ -145,7 +145,7 @@ function renderQuizzes() { // render quiz --------------------------------------
                     showUserForm();
                     // Show form for user to put their initial
                     // Save to local storage
-                    save2LocalStorage();
+                    highscores();
                     return;
                 }
                 statusResultHtml.innerHTML = "";
@@ -164,21 +164,80 @@ function showUserForm() {
     clearInterval(myInterval);
     document.getElementById("time").innerHTML = "";
 
+    // save user data
+    document.getElementById("save-user-data").addEventListener("click", function () {
+        // Using JSON technique learned from https://www.kirupa.com/html5/storing_and_retrieving_an_array_from_local_storage.htm  
+        if (localStorage.getItem("users") === null) {
+            localStorage.setItem("users", JSON.stringify(userData));
+            console.log("If: localStorage.getItem('users')", localStorage.getItem("users"));
+        }
+        // get the saved objUsers
+        var objUsers = localStorage.getItem("users");
+        console.log("Else: localStorage.getItem('users')", localStorage.getItem("users"));
+        // convert objUsers to array
+        var arrUsers = JSON.parse(objUsers);
+
+        // append new user to arrUsers
+        arrUsers.push({ initial: document.getElementById("initial").value, score: totalScore() });
+        // store arrUsers as object again
+        localStorage.setItem("users", JSON.stringify(arrUsers));
+        
+        // retrieve the saved objUsers again to get last updates
+        objUsers = localStorage.getItem("users");
+        arrUsers = JSON.parse(objUsers);
+
+        //compute highest score
+        //Store scores of all users to get highest score
+        for (let i = 0; i < arrUsers.length; i++) {
+            console.log(arrUsers[i].initial, " ", arrUsers[i].score);
+            allUserScores[i] = arrUsers[i].score;
+            console.log("allUserScores ", i, " ", allUserScores[i]);
+        }
+        function sortNumber(a, b) {
+            return a - b;
+          }
+        
+        allUserScores.sort(sortNumber);
+        const highestScore = allUserScores[allUserScores.length-1];
+        let champion = "";
+        for (let i = 0; i < arrUsers.length; i++) {
+            if (arrUsers[i].score === highestScore) {
+                champion = arrUsers[i].initial;
+            }
+        }
+
+        console.log("allUserScores: ", allUserScores);
+        document.getElementById("user-form").setAttribute("class", "d-none");
+        document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
+        document.getElementById("highscoresH4").innerHTML = "The highest score is <span style='color:red; font-weight:bold'> " + highestScore  + "</span>, done by <span style='color:red; font-weight:bold'>" + champion + "</span>";
+        
+    });
+
+    // Clear Highscore
+    document.getElementById("clear-hgithscore").addEventListener("click", function(){
+        localStorage.clear();
+        document.getElementById("highscoresH4").innerHTML = "The highest score was cleared!";
+        console.l
+    });
+
 
 }
-function save2LocalStorage() {
+function highscores() {
     document.querySelector(".initial-js").addEventListener("click", function () {
         document.getElementById("user-form").setAttribute("class", "d-none");
         document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
     });
 
-    document.querySelector(".go-back-js").addEventListener("click", function () {
+    document.getElementById("go-back").addEventListener("click", function () {
         document.getElementById("high-score").setAttribute("class", "d-none");
         location.reload();
+
+
+
     });
 }
 function startTimer(time) {
-        myInterval = setInterval(function () {
+    myInterval = setInterval(function () {
         time = time - 1;
         remainingTime = time; // assign to global variable
         if (time <= 0) {
@@ -187,13 +246,13 @@ function startTimer(time) {
             alert("Time is up");
             containerEl.setAttribute("class", "d-none");
             showUserForm();
-        }  
+        }
         document.getElementById("time").innerHTML = "Remaining time (sec): " + remainingTime;
     }, 1000);
 }
-function totalScore(){
+function totalScore() {
     let userScore = 0;
-    for (let i = 0; i < userScores.length; i++){
+    for (let i = 0; i < userScores.length; i++) {
         userScore = userScore + userScores[i];
     }
     return userScore;
