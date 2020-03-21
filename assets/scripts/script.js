@@ -220,7 +220,7 @@ function showUserForm() {
 function highscores() {
     document.querySelector(".initial-js").addEventListener("click", function () {
         document.getElementById("user-form").setAttribute("class", "d-none");
-        document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
+        document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light p-3");
     });
 
     document.getElementById("go-back").addEventListener("click", function () {
