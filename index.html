@@ -8,6 +8,7 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -30,24 +31,23 @@
 
             <!-- quiz introduction -->
             <div class="col">
-                <h4>
-
-                    This quiz app aims to enable user to track their progress of knowledge in JavaScript by
-                    comparing their score with other user after they finished the quiz.
-                    This quiz app allows user to answer to 5 JavaScript questions within 75 seconds.
-                    Each correct answer will get the remaining time as the score.
-                    If user chose an incorrect answer, 15 seconds are deducted from the remaining time.
-                    User will see their total scores at the end of the quiz.
-                    User can also see the person who got the highest score.
-                    User can clear the highest score.
-
-                </h4>
+                <p>
+                    This is a time-based quiz that allows user to answer to 5 JavaScript questions within 75 seconds.
+                    The rules are as follows:
+                    <ul>
+                        <li> Each correct answer will get the remaining time as the score.</li>
+                        <li>If user chose an incorrect answer, 15 seconds are deducted from the remaining time.</li>
+                        <li>User will see their total scores at the end of the quiz.</li>
+                        <li>User can also see the person who got the highest score.</li>
+                        <li>User can clear the highest score.</li>
+                    </ul>
+                </p>
 
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center mt-2">
-                <button id="start-quiz-btn" class="btn btn-primary"> Start Quiz</button>
+                <button id="start-quiz-btn" class="btn btn-primary btn-block"> Start Quiz</button>
             </div>
         </div>
     </div> <!-- --------------------------------------------------------------------------------------->

@@ -52,7 +52,9 @@ function renderQuizzes() { // render quiz --------------------------------------
     questionRow.setAttribute("class", "row");
     const questionCol = document.createElement("div");
     questionCol.setAttribute("class", "col");
-    const questionContent = document.createElement("h3");
+    const questionContent = document.createElement("p");
+    questionContent.style.fontWeight = "bold";
+    questionContent.style.textAlign = "justify";
     const answersRow = document.createElement("div");
     answersRow.setAttribute("class", "row");
     const statusResultRow = document.createElement("div");
@@ -76,7 +78,7 @@ function renderQuizzes() { // render quiz --------------------------------------
         const answersCol = document.createElement("div");
         answersCol.setAttribute("class", "col-12 mt-1");
         const answerBtn = document.createElement("button");
-        answerBtn.setAttribute("class", "btn btn-primary btn-sm");
+        answerBtn.setAttribute("class", "btn btn-warning btn-block text-left");
         answersRow.append(answersCol);
         answersCol.append(answerBtn);
         btnAnswerChoices[i] = answerBtn;
