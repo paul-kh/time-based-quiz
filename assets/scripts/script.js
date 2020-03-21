@@ -47,7 +47,7 @@ function renderQuizzes() { // render quiz --------------------------------------
 
     let questionNum = 0;
     // create skelleton of question-answer container and elements
-    containerEl.setAttribute("class", "container mt-5 bg-light");
+    containerEl.setAttribute("class", "container mt-5 bg-light p-3");
     const questionRow = document.createElement("div");
     questionRow.setAttribute("class", "row");
     const questionCol = document.createElement("div");
@@ -58,10 +58,8 @@ function renderQuizzes() { // render quiz --------------------------------------
     const statusResultRow = document.createElement("div");
     const statusResultCol = document.createElement("div");
     const statusResultHtml = document.createElement("span");
-    statusResultRow.setAttribute("class", "row");
+    statusResultRow.setAttribute("class", "row mt-3");
     statusResultCol.setAttribute("class", "col-12");
-
-
 
     containerEl.append(questionRow);
     questionRow.append(questionCol);
@@ -154,7 +152,7 @@ function renderQuizzes() { // render quiz --------------------------------------
 
 function showUserForm() {
 
-    document.getElementById("user-form").setAttribute("class", "container mt-5 bg-light");
+    document.getElementById("user-form").setAttribute("class", "container mt-5 p-3 bg-light");
     document.getElementById("user-score").innerHTML = "Your total score is <strong><span style='color:red'>" + totalScore(); +"</strong></span>";
     clearInterval(myInterval);
     document.getElementById("time").innerHTML = "";
@@ -176,7 +174,7 @@ function showUserForm() {
         arrUsers.push({ initial: document.getElementById("initial").value, score: totalScore() });
         // store arrUsers as object again
         localStorage.setItem("users", JSON.stringify(arrUsers));
-        
+
         // retrieve the saved objUsers again to get last updates
         objUsers = localStorage.getItem("users");
         arrUsers = JSON.parse(objUsers);
@@ -190,10 +188,10 @@ function showUserForm() {
         }
         function sortNumber(a, b) {
             return a - b;
-          }
-        
+        }
+
         allUserScores.sort(sortNumber);
-        const highestScore = allUserScores[allUserScores.length-1];
+        const highestScore = allUserScores[allUserScores.length - 1];
         let champion = "";
         for (let i = 0; i < arrUsers.length; i++) {
             if (arrUsers[i].score === highestScore) {
@@ -204,12 +202,12 @@ function showUserForm() {
         console.log("allUserScores: ", allUserScores);
         document.getElementById("user-form").setAttribute("class", "d-none");
         document.getElementById("high-score").setAttribute("class", "container mt-5 bg-light");
-        document.getElementById("highscoresH4").innerHTML = "The highest score is <span style='color:red; font-weight:bold'> " + highestScore  + "</span>, done by <span style='color:red; font-weight:bold'>" + champion + "</span>";
-        
+        document.getElementById("highscoresH4").innerHTML = "The highest score is <span style='color:red; font-weight:bold'> " + highestScore + "</span>, done by <span style='color:red; font-weight:bold'>" + champion + "</span>";
+
     });
 
     // Clear Highscore
-    document.getElementById("clear-hgithscore").addEventListener("click", function(){
+    document.getElementById("clear-hgithscore").addEventListener("click", function () {
         localStorage.clear();
         document.getElementById("highscoresH4").innerHTML = "The highest score was cleared!";
         console.l
